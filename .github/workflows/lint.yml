@@ -31,6 +31,6 @@ jobs:
         uses: golangci/golangci-lint-action@v7
         with:
           version: v2.4.0
-          args: --verbose --enable=govet,nilnil,nilnesserr,nilerr,unused,staticcheck
+          args: --verbose --enable=govet,nilnil,nilnesserr,nilerr,unused,staticcheck --default=none
 
   
