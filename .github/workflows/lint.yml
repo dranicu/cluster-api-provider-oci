@@ -32,5 +32,17 @@ jobs:
         with:
           version: v2.4.0
           args: --verbose --enable=govet,nilnil,nilnesserr,nilerr,unused,staticcheck --default=none
+  nilaway:
+    name: Run nil panic checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Run nilaway
+        uses: qbaware/nilaway-action@v0.0.13
+        with:
+          package-to-scan: github.com/oracle/cluster-api-provider-oci
+
 
   
