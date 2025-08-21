@@ -32,7 +32,6 @@ jobs:
         with:
           version: v2.4.0
           args: --verbose --enable=govet,nilnil,nilnesserr,nilerr,unused,nilaway
-          cache: true # Caches the results of the linter for faster subsequent runs
           
   # nilaway:
   #   name: Run nilaway
