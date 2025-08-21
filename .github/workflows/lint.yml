@@ -44,6 +44,7 @@ jobs:
         uses: qbaware/nilaway-action@v0.0.13
         with:
           package-to-scan: ./...
-
+        env:
+          GOFLAGS: "-buildvcs=false"
 
   
