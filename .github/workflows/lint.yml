@@ -31,19 +31,19 @@ jobs:
         uses: golangci/golangci-lint-action@v7
         with:
           version: v2.4.0
-          args: --verbose --enable=govet,nilnil,nilnesserr,nilerr,unused,nilaway
+          args: --verbose --enable=govet,nilnil,nilnesserr,nilerr,unused
           
-  # nilaway:
-  #   name: Run nilaway
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout Code
-  #       uses: actions/checkout@v2
+  nilaway:
+    name: Run nilaway
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-  #     - name: Run nilaway
-  #       uses: qbaware/nilaway-action@v0.0.13
-  #       with:
-  #         package-to-scan: ./...
+      - name: Run nilaway
+        uses: qbaware/nilaway-action@v0.0.13
+        with:
+          package-to-scan: ./...
 
 
   
