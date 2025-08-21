@@ -27,12 +27,13 @@ jobs:
           go-version-file: go.mod
           cache: true # Caches Go modules for faster builds.
 
-      - name: Build golangci-lint with NilAway
-        run: golangci-lint custom --config=.custom-gcl.yml
-
-      - name: Run golangci-lint (custom binary with NilAway)
-        run: ./custom-gcl run --config=.golangci.yml --verbose
-  
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v7
+        with:
+          version: v2.4.0
+          args: --verbose --enable=govet,nilnil,nilnesserr,nilerr,unused,nilaway
+          cache: true # Caches the results of the linter for faster subsequent runs
+          
   # nilaway:
   #   name: Run nilaway
   #   runs-on: ubuntu-latest
