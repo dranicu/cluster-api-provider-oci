@@ -1,0 +1,52 @@
+    
+# .github/workflows/lint.yml
+
+name: Go Linter
+
+# This workflow runs on pushes to the main branch and on any pull request.
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Run golangci-lint
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out the code from the repository.
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up the Go environment.
+      # Make sure the 'go-version' matches the version in your go.mod file.
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version-file: go.mod
+          cache: true # Caches Go modules for faster builds.
+
+      # Step 3: Run golangci-lint using the official action.
+      # This action will automatically find your .golangci.yml file,
+      # install the specified version of golangci-lint, and run it.
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          # Required: The version of golangci-lint to use.
+          # Using a specific version is recommended for reproducible builds.
+          # You can find the latest version at https://github.com/golangci/golangci-lint/releases
+          version: v2.4.0
+          
+          # Optional: Command line arguments to pass to golangci-lint.
+          # The 'run' command is default. '--verbose' can help with debugging.
+          args: --verbose
+
+          # Important: The action caches linter results between runs for faster
+          # analysis on subsequent commits. This is enabled by default.
+
+  
