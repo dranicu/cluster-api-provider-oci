@@ -31,15 +31,19 @@ jobs:
         uses: golangci/golangci-lint-action@v7
         with:
           version: v2.4.0
-          args: --verbose --enable=govet,nilnil
+          args: --config=.custom-gcl.yaml --verbose
 
+  nilaway:
+    name: Run nilaway
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Run nil panic checks
+      - name: Run nilaway
         uses: qbaware/nilaway-action@v0.0.13
         with:
-           package-to-scan: ./...
+          package-to-scan: ./...
 
 
   
