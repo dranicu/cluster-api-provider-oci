@@ -30,11 +30,13 @@ jobs:
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@v7
         with:
-
           version: v2.4.0
-          # config-file: .custom-gcl.yaml
-
           args: --verbose
+
+      - name: Run nil panic checks
+        uses: qbaware/nilaway-action@v0.0.13
+        with:
+           package-to-scan: ./...
 
 
   
