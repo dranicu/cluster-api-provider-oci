@@ -27,23 +27,23 @@ jobs:
           go-version-file: go.mod
           cache: true # Caches Go modules for faster builds.
 
-      - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v7
-        with:
-          version: v2.4.0
-          args: --config=.custom-gcl.yaml --verbose
+      - name: Build golangci-lint with NilAway
+        run: golangci-lint custom --config=.custom-gcl.yml
 
-  nilaway:
-    name: Run nilaway
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - name: Run golangci-lint (custom binary with NilAway)
+        run: ./custom-gcl run --config=.golangci.yml --verbose
+  
+  # nilaway:
+  #   name: Run nilaway
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v2
 
-      - name: Run nilaway
-        uses: qbaware/nilaway-action@v0.0.13
-        with:
-          package-to-scan: ./...
+  #     - name: Run nilaway
+  #       uses: qbaware/nilaway-action@v0.0.13
+  #       with:
+  #         package-to-scan: ./...
 
 
   
